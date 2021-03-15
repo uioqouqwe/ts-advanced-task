@@ -24,7 +24,7 @@ export type objType = {
 
 export type structedArgsType<T extends objType> = {
     [key in keyof nonEmptyObjects<onlyFuncValues<T>>]:
-        (T[key] extends ((...args: infer U) => any) ? U[number][] : T[key] extends objType ? structedArgsType<T[key]> : never)
+        (T[key] extends ((...args: infer U) => any) ? U : T[key] extends objType ? structedArgsType<T[key]> : never)
 };
 
 export type nonEmptyObjects<T extends any> = {
